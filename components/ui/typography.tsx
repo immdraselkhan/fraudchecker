@@ -1,5 +1,5 @@
 import Link, { LinkProps } from "next/link";
-import { VariantProps, cva } from "class-variance-authority";
+import { cva, VariantProps } from "class-variance-authority";
 import { Slot } from "@radix-ui/react-slot";
 import { cn } from "@/lib/shadcn/cn";
 import * as React from "react";
@@ -50,16 +50,20 @@ type TypographyProps =
       LinkProps & {
         as: "a";
         asChild?: boolean;
+        target?: string;
+        rel?: string;
       })
   | (React.HTMLAttributes<HTMLElement> &
       VariantPropType & {
         as?: Exclude<VariantPropType["variant"], (typeof excludedTags)[number]>;
         href?: never;
         asChild?: boolean;
+        target?: never;
+        rel?: never;
       });
 
 const Typography = React.forwardRef<HTMLElement, TypographyProps>(
-  ({ className, variant, as, href, asChild, ...props }, ref) => {
+  ({ className, variant, as, href, asChild, target, rel, ...props }, ref) => {
     const Component = asChild
       ? Slot
       : as === "a"
@@ -76,6 +80,8 @@ const Typography = React.forwardRef<HTMLElement, TypographyProps>(
         ref={ref}
         {...props}
         href={as === "a" ? href : undefined}
+        target={as === "a" ? target : undefined}
+        rel={as === "a" ? rel : undefined}
       />
     );
   },
