@@ -1,0 +1,13 @@
+import { cn } from "@/lib/shadcn/cn";
+import * as React from "react";
+
+type BoxProps = React.HTMLAttributes<HTMLDivElement>;
+
+const Box = React.forwardRef<HTMLDivElement, BoxProps>(
+  ({ className, ...props }, ref) => (
+    <div className={cn(className)} ref={ref} {...props} />
+  ),
+);
+Box.displayName = "Box";
+
+export { Box };

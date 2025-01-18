@@ -1,0 +1,58 @@
+{
+  "name": "fraudchecker",
+  "version": "1.0",
+  "description": "FraudChecker.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/immdraselkhan/fraudchecker"
+  },
+  "author": {
+    "name": "Md Rasel Khan",
+    "email": "hello@raselkhan.dev",
+    "url": "https://raselkhan.dev"
+  },
+  "bugs": {
+    "email": "hello@raselkhan.dev",
+    "url": "https://github.com/immdraselkhan/fraudchecker/issues"
+  },
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "rimraf .next && next build",
+    "start": "yarn build && next start",
+    "update@latest": "yarn upgrade && npx syncyarnlock --save --keepPrefix && yarn install",
+    "upgrade@latest": "yarn upgrade-interactive --latest"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.10.0",
+    "@radix-ui/react-label": "^2.1.1",
+    "@radix-ui/react-progress": "^1.1.1",
+    "@radix-ui/react-slot": "^1.1.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.473.0",
+    "next": "15.1.5",
+    "next-themes": "^0.4.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.2",
+    "recharts": "^2.15.0",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^5.2.1",
+    "@types/node": "^22.10.7",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.10",
+    "rimraf": "^6.0.1",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
