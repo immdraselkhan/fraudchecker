@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
   const phone = req.nextUrl.searchParams.get("phone");
   const token = req.headers.get("authorization")?.split(" ")[1];
 
-  if (token !== Constants.API_TOKEN) {
+  if (token !== "545b7c2bacc5c350aad7ff8ab2d72765") {
     return Response.json({
       status: 401,
       success: false,
