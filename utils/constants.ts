@@ -6,4 +6,9 @@ export class Constants {
   static NODE_ENV = process.env.NODE_ENV;
   static COURIER_EENDPOINT = process.env.COURIER_EENDPOINT!;
   static COURIER_TOKEN = process.env.COURIER_TOKEN!;
+  static API_URL =
+    this.NODE_ENV === "development"
+      ? "http://localhost:3000/api"
+      : "https://fraudchecker.org/api";
+  static API_TOKEN = process.env.API_TOKEN!;
 }

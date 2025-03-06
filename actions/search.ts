@@ -1,14 +1,11 @@
 "use server";
 
 import type { CourierHistory } from "@/types/courier";
-import { randomCourierHistory } from "@/mock/courier";
 import { searchFormSchema } from "@/lib/zod/schema";
 import { Constants } from "@/utils/constants";
 import { fetchApi } from "@/utils/fetch-api";
 
-type FormState = {
-  success: boolean;
-  data?: CourierHistory["courierData"];
+type FormState = CourierHistory & {
   errors?: { [key: string]: string[] };
 };
 
@@ -24,31 +21,12 @@ export async function searchAction(formData: FormData): Promise<FormState> {
     };
   }
 
-  const response =
-    Constants.NODE_ENV === "development"
-      ? randomCourierHistory()
-      : (
-          await fetchApi.post<CourierHistory>(
-            `${Constants.COURIER_EENDPOINT}?phone=${parsed.data.phone}`,
-            {
-              headers: { Authorization: `Bearer ${Constants.COURIER_TOKEN}` },
-            },
-          )
-        ).data;
+  const response = await fetchApi.post<CourierHistory>(
+    `${Constants.API_URL}/check?phone=${parsed.data.phone}`,
+    {
+      headers: { Authorization: `Bearer ${Constants.API_TOKEN}` },
+    },
+  );
 
-  if (!response || response.status !== "success" || !response.courierData) {
-    return {
-      success: false,
-      data: {
-        summary: {
-          total_parcel: 0,
-          success_parcel: 0,
-          cancelled_parcel: 0,
-          success_ratio: 0,
-        },
-      },
-    };
-  }
-
-  return { success: true, data: response.courierData };
+  return response.data;
 }

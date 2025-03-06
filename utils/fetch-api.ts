@@ -13,7 +13,7 @@ type ApiResponse<T> = {
   success?: boolean;
   message?: string;
   stackTrace?: string | T;
-  data?: T;
+  data: T;
 };
 
 export const fetchApi = (() => {
@@ -37,7 +37,7 @@ export const fetchApi = (() => {
       });
 
       const response = await resObj.json();
-      return { ...response, data: response.data || response };
+      return { ...response, data: response };
     } catch (error) {
       return {
         status: 500,
@@ -48,6 +48,7 @@ export const fetchApi = (() => {
         ...(Constants.NODE_ENV === "development" && {
           stackTrace: (error instanceof Error && error.stack) || "",
         }),
+        data: null as T,
       };
     }
   }

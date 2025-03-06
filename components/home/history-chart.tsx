@@ -113,7 +113,7 @@ export function HistoryChart({ props }: HistoryChartProps) {
             ? "এটি একটি নিরাপদ ডেলিভারি। ✅"
             : props?.summary?.success_ratio >= 50
               ? "ডেলিভারি সমস্যা হতে পারে। ⚠️"
-              : "এটি একটি অনিরাপদ ডেলিভারি। ❌"}
+              : "এটি একটি ঝুঁকিপূর্ণ ডেলিভারি। ❌"}
         </Typography>
       </CardFooter>
     </Card>
