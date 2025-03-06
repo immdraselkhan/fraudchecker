@@ -31,18 +31,20 @@ export function randomCourierHistory() {
   );
 
   return {
-    status: "success",
-    courierData: {
-      ...courierData,
-      summary: {
-        total_parcel,
-        success_parcel,
-        cancelled_parcel,
-        success_ratio: total_parcel
-          ? +((success_parcel / total_parcel) * 100).toFixed(2)
-          : 0,
+    data: {
+      status: "success",
+      courierData: {
+        ...courierData,
+        summary: {
+          total_parcel,
+          success_parcel,
+          cancelled_parcel,
+          success_ratio: total_parcel
+            ? +((success_parcel / total_parcel) * 100).toFixed(2)
+            : 0,
+        },
       },
+      reports: [],
     },
-    reports: [],
   };
 }

@@ -4,7 +4,7 @@ import { randomCourierHistory } from "@/mock/courier";
 import { Constants } from "@/utils/constants";
 import { fetchApi } from "@/utils/fetch-api";
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
   const phone = req.nextUrl.searchParams.get("phone");
   const token = req.headers.get("authorization")?.split(" ")[1];
 
@@ -19,14 +19,12 @@ export async function POST(req: NextRequest) {
   const response =
     Constants.NODE_ENV === "development"
       ? randomCourierHistory()
-      : (
-          await fetchApi.post<CourierApiResponse>(
-            `${Constants.COURIER_EENDPOINT}?phone=${phone}`,
-            { headers: { Authorization: `Bearer ${Constants.COURIER_TOKEN}` } },
-          )
-        ).data;
+      : await fetchApi.post<CourierApiResponse>(
+          `${Constants.COURIER_EENDPOINT}?phone=${phone}`,
+          { headers: { Authorization: `Bearer ${Constants.COURIER_TOKEN}` } },
+        );
 
-  const courierData = response?.courierData;
+  const courierData = response?.data.courierData;
 
   const isEmptyData = !courierData || courierData?.summary.total_parcel === 0;
 

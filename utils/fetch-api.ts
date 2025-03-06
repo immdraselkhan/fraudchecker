@@ -37,7 +37,7 @@ export const fetchApi = (() => {
       });
 
       const response = await resObj.json();
-      return { ...response, data: response };
+      return { data: response };
     } catch (error) {
       return {
         status: 500,

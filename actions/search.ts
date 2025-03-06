@@ -21,7 +21,7 @@ export async function searchAction(formData: FormData): Promise<FormState> {
     };
   }
 
-  const response = await fetchApi.post<CourierHistory>(
+  const response = await fetchApi.get<CourierHistory>(
     `${Constants.API_URL}/check?phone=${parsed.data.phone}`,
     {
       headers: { Authorization: `Bearer ${Constants.API_TOKEN}` },
