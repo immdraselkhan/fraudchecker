@@ -9,6 +9,6 @@ export class Constants {
   static API_URL =
     this.NODE_ENV === "development"
       ? "http://localhost:3000/api"
-      : "https://fraudchecker.org/api";
+      : "https://www.fraudchecker.org/api";
   static API_TOKEN = process.env.API_TOKEN!;
 }
