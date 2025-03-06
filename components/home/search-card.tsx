@@ -51,7 +51,7 @@ export function SearchCard({ onSearch }: SearchCardProps) {
     });
 
     const { errors, data } = await searchAction(formData);
-    console.log(data);
+
     if (errors) {
       Object.entries(errors).forEach(([fieldName, fieldErrors]) => {
         fieldErrors.forEach((errorMessage) => {
